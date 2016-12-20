@@ -4,8 +4,12 @@
 
 package main
 
-import "github.com/tylerconlee/SummitAPI/analytics"
-import "os"
+import (
+	"os"
+
+	"github.com/tylerconlee/SummitAPI/analytics"
+)
+
 import "fmt"
 
 func main() {
@@ -18,18 +22,17 @@ func main() {
 	analytics.ConnectAnalytics()
 	println("Connected to Google Analytics")
 	request := analytics.MakeRequest()
-	results := analytics.AnalyticsReportingService.Reports.BatchGet(&request)
-	response, err := results.Do()
+	batchGet := analytics.AnalyticsReportingService.Reports.BatchGet(&request)
+	response, err := batchGet.Do()
 	if nil != err {
 		fmt.Print(err)
 		os.Exit(1)
 	}
-	output := response.Reports[0].Data.Rows[0]
+	output := response.Reports[0].Data.Rows
 	if nil != err {
 		fmt.Print(err)
 		os.Exit(1)
 	}
-	fmt.Printf("\n %v", output.Dimensions)
-	fmt.Printf("\n %v", output.Metrics)
+	analytics.ResponseParser(output)
 	// Listen and serve HTTP requests from the PHP app
 }
