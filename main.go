@@ -4,13 +4,7 @@
 
 package main
 
-import (
-	"os"
-
-	"github.com/tylerconlee/SummitAPI/analytics"
-)
-
-import "fmt"
+import "github.com/tylerconlee/SummitAPI/analytics"
 
 func main() {
 	// Set initial configurations, use overrides from environment variables
@@ -21,18 +15,6 @@ func main() {
 	// Use connection to be passed to listen for data push/pull requests
 	analytics.ConnectAnalytics()
 	println("Connected to Google Analytics")
-	request := analytics.MakeRequest()
-	batchGet := analytics.AnalyticsReportingService.Reports.BatchGet(&request)
-	response, err := batchGet.Do()
-	if nil != err {
-		fmt.Print(err)
-		os.Exit(1)
-	}
-	output := response.Reports[0].Data.Rows
-	if nil != err {
-		fmt.Print(err)
-		os.Exit(1)
-	}
-	analytics.ResponseParser(output)
+	analytics.Request()
 	// Listen and serve HTTP requests from the PHP app
 }
