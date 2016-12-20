@@ -8,12 +8,13 @@ import (
 
 var AnalyticsReportingService *analyticsreporting.Service
 
-func connectAnalytics() {
+func ConnectAnalytics() *analyticsreporting.Service {
 	var err error
 	os.Setenv("GOOGLE_APPLICATION_CREDENTIALS", "./gcredentials.json")
 	oauthHTTPClient := OauthConnect()
 	AnalyticsReportingService, err = analyticsreporting.New(oauthHTTPClient)
 	if nil != err {
-		return
+		os.Exit(1)
 	}
+	return AnalyticsReportingService
 }
