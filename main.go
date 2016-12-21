@@ -4,21 +4,27 @@
 
 package main
 
-import "github.com/tylerconlee/SummitAPI/analytics"
-import "fmt"
+import (
+	analytics "github.com/tylerconlee/SummitAPI/analytics"
+	c "github.com/tylerconlee/SummitAPI/config"
+	log "github.com/tylerconlee/SummitAPI/log"
+)
 
 func main() {
 	// Set initial configurations, use overrides from environment variables
-	config := NewConfig()
+	config = c.NewConfig()
 
 	// Use configuration to create a new connection
 	config.DatabaseConnection.DatabaseHost = "localhost"
 
+	// Start logger
+	log.InitLog()
+	log.Logger.Info("Application log initialized")
+
 	// Use connection to be passed to listen for data push/pull requests
 	analytics.ConnectAnalytics()
-	println("Connected to Google Analytics")
 	analytics.GetID()
-	fmt.Printf("%v", analytics.Profiles)
+	log.Logger.Debug("%v", analytics.Profiles)
 
 	// Listen and serve HTTP requests from the PHP app
 }
