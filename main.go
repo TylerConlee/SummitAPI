@@ -5,26 +5,28 @@
 package main
 
 import (
+	"os"
+
 	analytics "github.com/tylerconlee/SummitAPI/analytics"
 	c "github.com/tylerconlee/SummitAPI/config"
 	log "github.com/tylerconlee/SummitAPI/log"
 )
 
 func main() {
+	os.Setenv("LOGXI", "*")
+
 	// Set initial configurations, use overrides from environment variables
-	config = c.NewConfig()
+	config := c.NewConfig()
 
 	// Use configuration to create a new connection
 	config.DatabaseConnection.DatabaseHost = "localhost"
 
 	// Start logger
-	log.InitLog()
+	log.InitLog("SummitAPI")
+
 	log.Logger.Info("Application log initialized")
 
-	// Use connection to be passed to listen for data push/pull requests
 	analytics.ConnectAnalytics()
 	analytics.GetID()
-	log.Logger.Debug("%v", analytics.Profiles)
+	log.Logger.Debug(analytics.Profiles)
 
-	// Listen and serve HTTP requests from the PHP app
-}
