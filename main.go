@@ -5,16 +5,12 @@
 package main
 
 import (
-	"os"
-
 	analytics "github.com/tylerconlee/SummitAPI/analytics"
 	c "github.com/tylerconlee/SummitAPI/config"
 	log "github.com/tylerconlee/SummitAPI/log"
 )
 
 func main() {
-	os.Setenv("LOGXI", "*")
-
 	// Set initial configurations, use overrides from environment variables
 	config := c.NewConfig()
 
@@ -29,4 +25,4 @@ func main() {
 	analytics.ConnectAnalytics()
 	analytics.GetID()
 	log.Logger.Debug(analytics.Profiles)
-
+}
