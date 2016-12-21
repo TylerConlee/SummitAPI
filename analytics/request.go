@@ -1,15 +1,52 @@
 package analytics
 
-import ga "google.golang.org/api/analytics/v3"
-import "fmt"
+import (
+	"fmt"
 
-func Request() {
-	manage := ga.NewManagementService(Service)
+	ga "google.golang.org/api/analytics/v3"
+)
+
+type Profile struct {
+	accountID  string
+	propertyID string
+	profileID  string
+}
+
+var Profiles []Profile
+
+func GetID() {
+	var manage = ga.NewManagementService(Service)
 	c, err := manage.Accounts.List().Do()
 	if nil != err {
 		fmt.Printf("%v", err)
 	}
 	for _, item := range c.Items {
-		fmt.Printf("ID: %s Name: %v\n", item.Id, item.Name)
+		GetProperties(item.Id)
+	}
+}
+
+func GetProperties(account string) {
+	var manage = ga.NewManagementService(Service)
+	c, err := manage.Webproperties.List(account).Do()
+	if nil != err {
+		fmt.Printf("%v", err)
+	}
+	for _, item := range c.Items {
+		GetProfiles(item.AccountId, item.Id)
+	}
+}
+
+func GetProfiles(account string, property string) {
+	var manage = ga.NewManagementService(Service)
+	c, err := manage.Profiles.List(account, property).Do()
+	if nil != err {
+		fmt.Printf("%v", err)
+	}
+	for _, item := range c.Items {
+		var profile Profile
+		profile.accountID = item.AccountId
+		profile.propertyID = item.WebPropertyId
+		profile.profileID = item.Id
+		Profiles = append(Profiles, profile)
 	}
 }
