@@ -22,7 +22,12 @@ func main() {
 
 	log.Logger.Info("Application log initialized")
 
+	// Run the ConnectAnalytics function that autheticates with Google using oAuth and preps the analytics.Service for use
 	analytics.ConnectAnalytics()
+
+	// Get a list of the account, property and profile IDs from Google analytics for the email address that's been autheticated
 	analytics.GetID()
+
+	// Output the grabbed profiles
 	log.Logger.Debug(analytics.Profiles)
 }

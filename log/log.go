@@ -14,8 +14,6 @@ var format = log.MustStringFormatter(
 
 func InitLog(module string) {
 	Logger = log.MustGetLogger(module)
-	// create a logger with a unique identifier which
-	// can be enabled from environment variables
 	backend := log.NewLogBackend(os.Stderr, "", 0)
 	backendFormatter := log.NewBackendFormatter(backend, format)
 	log.SetBackend(backendFormatter)
