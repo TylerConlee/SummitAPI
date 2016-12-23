@@ -9,11 +9,16 @@ import (
 	"golang.org/x/oauth2/jwt"
 )
 
+// OauthConnect grabs the private key out of the local private-key.txt file,
+// and sends an authetication request to Google for authetication
 func OauthConnect() *http.Client {
 	dat, _ := ioutil.ReadFile("private-key.txt")
 	// Your credentials should be obtained from the Google
 	// Developer Console (https://console.developers.google.com).
 	conf := &jwt.Config{
+
+		// Every account that this email address has access to will be included
+		// in data requests for this application
 		Email: "analytics-access@summitppc-1216.iam.gserviceaccount.com",
 		// The contents of your RSA private key or your PEM file
 		// that contains a private key.
@@ -30,6 +35,8 @@ func OauthConnect() *http.Client {
 		},
 		TokenURL: google.JWTTokenURL,
 	}
+
+	// Create an oauth autheticated client
 	client := conf.Client(oauth2.NoContext)
 	return client
 }

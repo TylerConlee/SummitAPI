@@ -4,6 +4,7 @@ import (
 	"os"
 
 	log "github.com/op/go-logging"
+	c "github.com/tylerconlee/SummitAPI/config"
 )
 
 var Logger *log.Logger
@@ -13,10 +14,23 @@ var format = log.MustStringFormatter(
 )
 
 func InitLog(module string) {
+	// Load configuration to be able to grab log level
+	config := c.InitConfig()
+
+	// Create new log.Logger with the module name
 	Logger = log.MustGetLogger(module)
-	// create a logger with a unique identifier which
-	// can be enabled from environment variables
+
+	// Tell the log where to output
+	// TODO: turn this into a configurable setting
 	backend := log.NewLogBackend(os.Stderr, "", 0)
-	backendFormatter := log.NewBackendFormatter(backend, format)
-	log.SetBackend(backendFormatter)
+
+	// Assign the format to the log
+	formatter := log.NewBackendFormatter(backend, format)
+
+	// Filter the log based off of the configured log level
+	l := log.AddModuleLevel(formatter)
+	l.SetLevel(log.GetLevel(config.LogLevel), "")
+
+	// Tell the log instance to use the leveled logs
+	log.SetBackend(l)
 }

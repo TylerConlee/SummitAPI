@@ -8,16 +8,25 @@ import (
 	ga "google.golang.org/api/analytics/v3"
 )
 
+// Each account is stored as a Profile struct, with an individual profile ID, // property and account. Accounts can have multiple properties, and each
+// property can have multiple profiles.
+// https://github.com/google/google-api-go-client/blob/master/analytics/v3/analytics-gen.go
+
 type Profile struct {
 	accountID  string
 	propertyID string
 	profileID  string
 }
 
+// Profiles is a slice of all available individual Profiles stored.
 var Profiles []Profile
 
 func GetID() {
+	// Start up a new module in the logger for Analytics
 	log.InitLog("Analytics")
+
+	// Create an instance of the management service
+	// https://developers.google.com/analytics/devguides/config/mgmt/v3/
 	var manage = ga.NewManagementService(Service)
 	c, err := manage.Accounts.List().Do()
 	if nil != err {
@@ -32,6 +41,8 @@ func GetID() {
 }
 
 func getProperties(account string) {
+	// Create an instance of the management service
+	// https://developers.google.com/analytics/devguides/config/mgmt/v3/
 	var manage = ga.NewManagementService(Service)
 	c, err := manage.Webproperties.List(account).Do()
 	if nil != err {
@@ -44,6 +55,8 @@ func getProperties(account string) {
 }
 
 func getProfiles(account string, property string) {
+	// Create an instance of the management service
+	// https://developers.google.com/analytics/devguides/config/mgmt/v3/
 	var manage = ga.NewManagementService(Service)
 	c, err := manage.Profiles.List(account, property).Do()
 	if nil != err {
