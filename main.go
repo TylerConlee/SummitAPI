@@ -12,10 +12,14 @@ import (
 
 func main() {
 	// Set initial configurations, use overrides from environment variables
-	config := c.NewConfig()
+	config := c.InitConfig()
 
 	// Use configuration to create a new connection
+	// TODO: Actually do something here to establish a database connection
 	config.DatabaseConnection.DatabaseHost = "localhost"
+
+	print(config.LogLevel)
+	print(config.AnalyticsAPIKey)
 
 	// Start logger
 	log.InitLog("SummitAPI")
