@@ -1,6 +1,6 @@
-// SummitAPI creates a web server that handles requests made by SummitDaemon
-// Designed to run in parallel in a containerized fashion
-// SummitAPI is required to be running in order to run SummitDaemon
+// SummitAPI is a simple app that, using the email address set in the oauth
+// settings, will poll available Google Analytics accounts and return data for
+// these accounts, storing it into a database
 
 package main
 
