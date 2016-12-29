@@ -18,9 +18,6 @@ func main() {
 	// TODO: Actually do something here to establish a database connection
 	config.DatabaseConnection.DatabaseHost = "localhost"
 
-	print(config.LogLevel)
-	print(config.AnalyticsAPIKey)
-
 	// Start logger
 	log.InitLog("SummitAPI")
 

@@ -29,7 +29,12 @@ func InitLog(module string) {
 
 	// Filter the log based off of the configured log level
 	l := log.AddModuleLevel(formatter)
-	l.SetLevel(log.GetLevel(config.LogLevel), "")
+
+	// Load the log level from the configuration
+	level, _ := log.LogLevel(config.LogLevel)
+
+	// Set the log level to the configured log level
+	l.SetLevel(level, "")
 
 	// Tell the log instance to use the leveled logs
 	log.SetBackend(l)
