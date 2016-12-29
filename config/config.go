@@ -30,7 +30,8 @@ type Config struct {
 	LogLevel string
 }
 
-// NewConfig creates an instance of the Config struct with the default values. // Values can be overridden after initialized.
+// NewConfig creates an instance of the Config struct with the default values.
+// Values can be overridden after initialized.
 func NewConfig() Config {
 	c := Config{}
 

@@ -8,7 +8,8 @@ import (
 	ga "google.golang.org/api/analytics/v3"
 )
 
-// Each account is stored as a Profile struct, with an individual profile ID, // property and account. Accounts can have multiple properties, and each
+// Each account is stored as a Profile struct, with an individual profile ID,
+// property and account. Accounts can have multiple properties, and each
 // property can have multiple profiles.
 // https://github.com/google/google-api-go-client/blob/master/analytics/v3/analytics-gen.go
 
