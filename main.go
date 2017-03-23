@@ -29,6 +29,7 @@ func main() {
 
 	// Get a list of the account, property and profile IDs from Google
 	// analytics for the email address that's been autheticated
+	// TODO: Add email config option for account changes
 	analytics.GetID()
 
 	// Output the grabbed profiles
