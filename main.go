@@ -8,6 +8,7 @@ import (
 	analytics "github.com/tylerconlee/SummitAPI/analytics"
 	c "github.com/tylerconlee/SummitAPI/config"
 	log "github.com/tylerconlee/SummitAPI/log"
+	"fmt"
 )
 
 func main() {
@@ -33,5 +34,6 @@ func main() {
 	analytics.GetID()
 
 	// Output the grabbed profiles
-	log.Logger.Debug(analytics.Profiles)
+	fmt.Printf("%+v\n", analytics.Profiles[0].PropertyID)
+	log.Logger.Debug(analytics.Profiles[1])
 }

@@ -14,13 +14,13 @@ import (
 // https://github.com/google/google-api-go-client/blob/master/analytics/v3/analytics-gen.go
 
 type Profile struct {
-	accountID  string
-	propertyID string
-	profileID  string
+	AccountID  string
+	PropertyID string
+	ProfileID  string
 }
 
 // Profiles is a slice of all available individual Profiles stored.
-var Profiles []Profile
+var Profiles []*Profile
 
 func GetID() {
 	// Start up a new module in the logger for Analytics
@@ -66,10 +66,10 @@ func getProfiles(account string, property string) {
 	log.Logger.Debug("Profile pulled for account: ", account, " property: ", property, " response: ", c.ServerResponse, "results: ", c.TotalResults)
 	for _, item := range c.Items {
 		var profile Profile
-		profile.accountID = item.AccountId
-		profile.propertyID = item.InternalWebPropertyId
-		profile.profileID = item.Id
-		Profiles = append(Profiles, profile)
+		profile.AccountID = item.AccountId
+		profile.PropertyID = item.InternalWebPropertyId
+		profile.ProfileID = item.Id
+		Profiles = append(Profiles, &profile)
 
 	}
 }
