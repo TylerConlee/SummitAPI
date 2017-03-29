@@ -13,8 +13,19 @@ import (
 // Config contains the possible configurable settings for the Summit application
 type Config struct {
 
-	// Provides API key for Google Analytics
-	AnalyticsAPIKey string
+	Analytics struct {
+		// Provides API key for Google Analytics
+		AnalyticsAPIKey string
+
+		// List dimensions to be gathered in Google Analytics queries
+		//
+		Dimensions string
+
+		// List metrics to be gathered in Google Analytics queries
+		//
+		Metrics string
+	}
+
 
 	// Database connection info
 	DatabaseConnection struct {
@@ -35,7 +46,7 @@ type Config struct {
 func NewConfig() Config {
 	c := Config{}
 
-	c.AnalyticsAPIKey = "testkey"
+	c.Analytics.AnalyticsAPIKey = "testkey"
 	c.DatabaseConnection.DatabaseHost = "localhost"
 	c.DatabaseConnection.DatabasePort = "3306"
 	c.DatabaseConnection.DatabaseName = "summit-ppc"
