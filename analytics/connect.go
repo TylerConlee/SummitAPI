@@ -3,7 +3,7 @@ package analytics
 import (
 	"os"
 
-	log "github.com/tylerconlee/SummitAPI/log"
+	"github.com/tylerconlee/SummitAPI/log"
 	ga "google.golang.org/api/analytics/v3"
 )
 

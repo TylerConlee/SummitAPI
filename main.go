@@ -5,9 +5,9 @@
 package main
 
 import (
-	analytics "github.com/tylerconlee/SummitAPI/analytics"
+	"github.com/tylerconlee/SummitAPI/analytics"
 	c "github.com/tylerconlee/SummitAPI/config"
-	log "github.com/tylerconlee/SummitAPI/log"
+	"github.com/tylerconlee/SummitAPI/log"
 
 )
 

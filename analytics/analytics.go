@@ -1,7 +1,7 @@
 package analytics
 
 import (
-	log "github.com/tylerconlee/SummitAPI/log"
+	"github.com/tylerconlee/SummitAPI/log"
 
 )
 

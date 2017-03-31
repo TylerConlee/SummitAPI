@@ -2,7 +2,7 @@ package analytics
 
 import (
 	c "github.com/tylerconlee/SummitAPI/config"
-	log "github.com/tylerconlee/SummitAPI/log"
+	"github.com/tylerconlee/SummitAPI/log"
 	ga "google.golang.org/api/analytics/v3"
 )
 
@@ -27,7 +27,7 @@ func Query(profile string) {
 	g := ga.NewDataGaService(Service)
 	req := g.Get("ga:" + profile, startDate, endDate, dimset.Metrics)
 	data, err := req.Do()
-	if (nil != err) {
+	if nil != err {
 		log.Logger.Fatal("Unable to process Analytics results")
 	}
 

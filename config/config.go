@@ -11,6 +11,7 @@ import (
 )
 
 // Config contains the possible configurable settings for the Summit application
+//noinspection ALL
 type Config struct {
 
 	Analytics struct {
@@ -57,9 +58,11 @@ func NewConfig() Config {
 	return c
 }
 
+//noinspection ALL
 func InitConfig() Config {
 	// Set the default path for the configuration file
 	// TODO: include the ability to set this value with a command line arg?
+	//noinspection GoNameStartsWithPackageName
 	var configfile = "./config.toml"
 
 	// Verify that the file exists and load into memory
@@ -72,6 +75,7 @@ func InitConfig() Config {
 	}
 
 	// Start with a default configuration
+	//noinspection GoNameStartsWithPackageName
 	var config = NewConfig()
 
 	// Decode the TOML configuration file and use it to overwrite the default

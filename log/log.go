@@ -1,11 +1,13 @@
 package log
 
+//noinspection GoNameStartsWithPackageName
 import (
 	log "github.com/op/go-logging"
 	c "github.com/tylerconlee/SummitAPI/config"
 	"os"
 )
 
+//noinspection GoNameStartsWithPackageName
 var Logger *log.Logger
 
 var format = log.MustStringFormatter(
