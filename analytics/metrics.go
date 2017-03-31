@@ -2,6 +2,8 @@ package analytics
 
 import (
 	c "github.com/tylerconlee/SummitAPI/config"
+	log "github.com/tylerconlee/SummitAPI/log"
+	ga "google.golang.org/api/analytics/v3"
 )
 
 type MetricTypes struct {
@@ -9,13 +11,27 @@ type MetricTypes struct {
 	Metrics string
 }
 
-func Query() {
+var (
+	startDate = "30daysAgo"
+	endDate = "yesterday"
+	dimset MetricTypes
+)
 
-}
-
-func getConfig() (params MetricTypes) {
+func loadQuery() {
 	config := c.InitConfig()
-	params.Dimensions = config.Analytics.Dimensions
-	params.Metrics = config.Analytics.Metrics
-	return params
+	dimset.Dimensions = config.Analytics.Dimensions
+	dimset.Metrics = config.Analytics.Metrics
 }
+
+func Query(profile string) {
+	g := ga.NewDataGaService(Service)
+	req := g.Get("ga:" + profile, startDate, endDate, dimset.Metrics)
+	data, err := req.Do()
+	if (nil != err) {
+		log.Logger.Fatal("Unable to process Analytics results")
+	}
+
+	log.Logger.Debug(data)
+
+}
+

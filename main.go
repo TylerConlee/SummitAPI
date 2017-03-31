@@ -28,4 +28,10 @@ func main() {
 	// analytics for the email address that's been authenticated
 
 	analytics.Init()
+
+	StartHarvest()
+}
+
+func StartHarvest(){
+	analytics.Harvest()
 }

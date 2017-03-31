@@ -18,11 +18,11 @@ type Config struct {
 		AnalyticsAPIKey string
 
 		// List dimensions to be gathered in Google Analytics queries
-		//
+		// https://developers.google.com/analytics/devguides/reporting/core/dimsmets
 		Dimensions string
 
 		// List metrics to be gathered in Google Analytics queries
-		//
+		// https://developers.google.com/analytics/devguides/reporting/core/dimsmets
 		Metrics string
 	}
 
@@ -47,6 +47,8 @@ func NewConfig() Config {
 	c := Config{}
 
 	c.Analytics.AnalyticsAPIKey = "testkey"
+	c.Analytics.Dimensions = "ga:source"
+	c.Analytics.Metrics = "ga:users"
 	c.DatabaseConnection.DatabaseHost = "localhost"
 	c.DatabaseConnection.DatabasePort = "3306"
 	c.DatabaseConnection.DatabaseName = "summit-ppc"

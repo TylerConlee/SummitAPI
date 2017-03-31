@@ -2,6 +2,7 @@ package analytics
 
 import (
 	log "github.com/tylerconlee/SummitAPI/log"
+
 )
 
 func Init() {
@@ -22,4 +23,13 @@ func Init() {
 
 	// Output the grabbed profiles
 	log.Logger.Debug(Profiles[1].AccountID)
+	loadQuery()
+
+
+}
+
+func Harvest(){
+	for _, profile := range Profiles {
+		Query(profile.ProfileID)
+	}
 }
