@@ -10,7 +10,7 @@ import (
 )
 
 // OauthConnect grabs the private key out of the local private-key.txt file,
-// and sends an authetication request to Google for authetication
+// and sends an authentication request to Google for authentication
 func OauthConnect() *http.Client {
 	dat, _ := ioutil.ReadFile("private-key.txt")
 	// Your credentials should be obtained from the Google
@@ -36,7 +36,7 @@ func OauthConnect() *http.Client {
 		TokenURL: google.JWTTokenURL,
 	}
 
-	// Create an oauth autheticated client
+	// Create an oauth authenticated client
 	client := conf.Client(oauth2.NoContext)
 	return client
 }

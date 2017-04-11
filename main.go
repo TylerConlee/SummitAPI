@@ -8,7 +8,6 @@ import (
 	"github.com/tylerconlee/SummitAPI/analytics"
 	c "github.com/tylerconlee/SummitAPI/config"
 	"github.com/tylerconlee/SummitAPI/log"
-
 )
 
 func main() {
@@ -32,6 +31,6 @@ func main() {
 	StartHarvest()
 }
 
-func StartHarvest(){
+func StartHarvest() {
 	analytics.Harvest()
 }

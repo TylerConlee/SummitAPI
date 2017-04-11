@@ -2,13 +2,11 @@ package analytics
 
 import (
 	"github.com/tylerconlee/SummitAPI/log"
-
 )
 
 func Init() {
 	// Start the log module for Analytics
 	log.InitLog("Analytics")
-
 
 	// Run the ConnectAnalytics function that authenticates with Google using
 	// oAuth and preps the Service for use
@@ -25,10 +23,9 @@ func Init() {
 	log.Logger.Debug(Profiles[1].AccountID)
 	loadQuery()
 
-
 }
 
-func Harvest(){
+func Harvest() {
 	for _, profile := range Profiles {
 		Query(profile.ProfileID)
 	}
