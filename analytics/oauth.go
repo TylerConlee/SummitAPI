@@ -4,6 +4,8 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/tylerconlee/SummitAPI/log"
+
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"golang.org/x/oauth2/jwt"
@@ -12,7 +14,13 @@ import (
 // OauthConnect grabs the private key out of the local private-key.txt file,
 // and sends an authentication request to Google for authentication
 func OauthConnect() *http.Client {
-	dat, _ := ioutil.ReadFile("private-key.txt")
+	dat, err := ioutil.ReadFile("private-key.txt")
+
+	if err != nil {
+		log.InitLog("OAuth")
+
+		log.Logger.Fatal("Unable to open private key. Please add private key to directory and try again.")
+	}
 	// Your credentials should be obtained from the Google
 	// Developer Console (https://console.developers.google.com).
 	conf := &jwt.Config{

@@ -13,7 +13,6 @@ import (
 // Config contains the possible configurable settings for the Summit application
 //noinspection ALL
 type Config struct {
-
 	Analytics struct {
 		// Provides API key for Google Analytics
 		AnalyticsAPIKey string
@@ -26,7 +25,6 @@ type Config struct {
 		// https://developers.google.com/analytics/devguides/reporting/core/dimsmets
 		Metrics string
 	}
-
 
 	// Database connection info
 	DatabaseConnection struct {
@@ -70,7 +68,7 @@ func InitConfig() Config {
 
 	// If file does not exist, return a basic config with default values
 	if err != nil {
-		log.Fatal("Config file is missing: ", configfile)
+		log.Print("Config file is missing: ", configfile)
 		return NewConfig()
 	}
 
