@@ -5,7 +5,7 @@ dependencies:
     # './...' is a relative pattern which means all subdirectories
     
     - go get -t -d -v ./...
-    - cd /.go_project/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
+    - cd ${HOME}/.go_project/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
     - git checkout ${CIRCLE_BRANCH}
     - go build -v
 
