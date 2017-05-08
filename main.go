@@ -17,7 +17,7 @@ func main() {
 	log.Logger.Info("Application log initialized")
 
 	// Set initial configurations, use overrides from environment variables
-	config, err := c.InitConfig()
+	config, err := (c.InitConfig())
 
 	if err != nil {
 		log.Logger.Error(err)
