@@ -44,7 +44,7 @@ func NewConfig() Config {
 	return c
 }
 
-func InitConfig() Config {
+func InitConfig() (Config, error) {
 	// Set the default path for the configuration file
 	// TODO: include the ability to set this value with a command line arg?
 	var configfile = "./config.toml"
@@ -54,8 +54,9 @@ func InitConfig() Config {
 
 	// If file does not exist, return a basic config with default values
 	if err != nil {
-		log.Fatal("Config file is missing: ", configfile)
-		return NewConfig()
+		log.Println("Config file is missing: ", configfile)
+		// TODO: Create a config.toml if there isn't one present.
+		return NewConfig(), nil
 	}
 
 	// Start with a default configuration
@@ -66,5 +67,5 @@ func InitConfig() Config {
 	if _, err := toml.DecodeFile(configfile, &config); err != nil {
 		log.Fatal(err)
 	}
-	return config
+	return config, nil
 }
