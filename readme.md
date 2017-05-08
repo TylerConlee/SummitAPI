@@ -19,7 +19,7 @@ Currently, the API has plans to also include information from:
 - New Relic
 
 
-Data is stored locally within Cassandra, with individual data
+Data is stored locally
 points for a daily basis. Initial data points, used as a proof of
 concept, will be basic, but allow for data manipulation over multiple
 time windows.

@@ -1,16 +1,17 @@
 package log
 
+//noinspection GoNameStartsWithPackageName
 import (
-	"os"
-
 	log "github.com/op/go-logging"
 	c "github.com/tylerconlee/SummitAPI/config"
+	"os"
 )
 
+//noinspection GoNameStartsWithPackageName
 var Logger *log.Logger
 
 var format = log.MustStringFormatter(
-	`%{color}%{time:15:04:05.000} %{module} ▶ %{level:.4s} %{id:03x}%{color:reset} %{message}`,
+	`%{color:bold}%{time:15:04:05.000} %{module} ▶%{color:reset} %{level:.4s} %{message}`,
 )
 
 func InitLog(module string) {
@@ -28,7 +29,7 @@ func InitLog(module string) {
 	formatter := log.NewBackendFormatter(backend, format)
 
 	// Filter the log based off of the configured log level
-	l := log.AddModuleLevel(formatter)
+	l := log.MultiLogger(formatter)
 
 	// Load the log level from the configuration
 	level, _ := log.LogLevel(config.LogLevel)

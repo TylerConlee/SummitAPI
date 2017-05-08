@@ -5,9 +5,9 @@
 package main
 
 import (
-	analytics "github.com/tylerconlee/SummitAPI/analytics"
+	"github.com/tylerconlee/SummitAPI/analytics"
 	c "github.com/tylerconlee/SummitAPI/config"
-	log "github.com/tylerconlee/SummitAPI/log"
+	"github.com/tylerconlee/SummitAPI/log"
 )
 
 func main() {
@@ -23,15 +23,14 @@ func main() {
 
 	log.Logger.Info("Application log initialized")
 
-	// Run the ConnectAnalytics function that autheticates with Google using
-	// oAuth and preps the analytics.Service for use
-	analytics.ConnectAnalytics()
-
 	// Get a list of the account, property and profile IDs from Google
-	// analytics for the email address that's been autheticated
-	// TODO: Add email config option for account changes
-	analytics.GetID()
+	// analytics for the email address that's been authenticated
 
-	// Output the grabbed profiles
-	log.Logger.Debug(analytics.Profiles)
+	analytics.Init()
+
+	StartHarvest()
+}
+
+func StartHarvest() {
+	analytics.Harvest()
 }
