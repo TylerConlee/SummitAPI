@@ -11,17 +11,21 @@ import (
 )
 
 func main() {
-	// Set initial configurations, use overrides from environment variables
-	config, _ := c.InitConfig()
-
-	// Use configuration to create a new connection
-	// TODO: Actually do something here to establish a database connection
-	config.DatabaseConnection.DatabaseHost = "localhost"
-
 	// Start logger
 	log.InitLog("SummitAPI")
 
 	log.Logger.Info("Application log initialized")
+
+	// Set initial configurations, use overrides from environment variables
+	config, err := c.InitConfig()
+
+	if err != nil {
+		log.Logger.Error(err)
+	}
+
+	// Use configuration to create a new connection
+	// TODO: Actually do something here to establish a database connection
+	config.DatabaseConnection.DatabaseHost = "localhost"
 
 	// Run the ConnectAnalytics function that autheticates with Google using
 	// oAuth and preps the analytics.Service for use
