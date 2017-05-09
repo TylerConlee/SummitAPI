@@ -10,6 +10,8 @@ import (
 	log "github.com/tylerconlee/SummitAPI/log"
 )
 
+var err error
+
 func main() {
 	// Start logger
 	log.InitLog("SummitAPI")
