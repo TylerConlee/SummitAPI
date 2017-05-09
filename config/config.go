@@ -54,7 +54,7 @@ func InitConfig() (Config, error) {
 
 	// If file does not exist, return a basic config with default values
 	if err != nil {
-		log.Println("Config file is missing: ", configfile)
+		//log.Println("Config file is missing: ", configfile)
 		// TODO: Create a config.toml if there isn't one present.
 		return NewConfig(), nil
 	}
