@@ -55,7 +55,8 @@ func InitConfig() (Config, error) {
 	if err != nil {
 		//log.Println("Config file is missing: ", configfile)
 		// TODO: Create a config.toml if there isn't one present.
-		return NewConfig(), err
+		cfg := NewConfig()
+		return cfg, err
 	}
 
 	// Start with a default configuration
@@ -64,7 +65,8 @@ func InitConfig() (Config, error) {
 	// Decode the TOML configuration file and use it to overwrite the default
 	// configuation values
 	if _, err := toml.DecodeFile(configfile, &config); err != nil {
-		return NewConfig(), err
+		cfg := NewConfig()
+		return cfg, err
 	}
 	return config, nil
 }
