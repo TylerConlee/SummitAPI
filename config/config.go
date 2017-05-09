@@ -4,7 +4,6 @@
 package config
 
 import (
-	"log"
 	"os"
 
 	"github.com/BurntSushi/toml"
@@ -65,7 +64,7 @@ func InitConfig() (Config, error) {
 	// Decode the TOML configuration file and use it to overwrite the default
 	// configuation values
 	if _, err := toml.DecodeFile(configfile, &config); err != nil {
-		log.Fatal(err)
+		return NewConfig(), err
 	}
 	return config, nil
 }
