@@ -15,7 +15,7 @@ var format = log.MustStringFormatter(
 
 func InitLog(module string) {
 	// Load configuration to be able to grab log level
-	config, _ := c.InitConfig()
+	config := c.InitConfig()
 
 	// Create new log.Logger with the module name
 	Logger = log.MustGetLogger(module)

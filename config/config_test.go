@@ -41,7 +41,6 @@ func TestNewConfig(t *testing.T) {
 }
 
 func TestInitConfig(t *testing.T) {
-	config, err := InitConfig()
-	ok(t, err)
+	config := InitConfig()
 	equals(t, "localhost", config.DatabaseConnection.DatabaseHost)
 }

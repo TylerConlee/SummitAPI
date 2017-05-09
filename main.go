@@ -17,7 +17,7 @@ func main() {
 	log.Logger.Info("Application log initialized")
 
 	// Set initial configurations, use overrides from environment variables
-	config, _ := c.InitConfig()
+	config := c.InitConfig()
 	// Use configuration to create a new connection
 	// TODO: Actually do something here to establish a database connection
 	config.DatabaseConnection.DatabaseHost = "localhost"
